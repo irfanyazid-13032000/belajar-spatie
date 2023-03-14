@@ -12,7 +12,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
 
-        return view('role.index');
+        return view('konfigurasi.role');
     }
 
     /**
