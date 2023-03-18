@@ -36,7 +36,9 @@ Route::middleware('auth')->group(function(){
     Route::controller(RoleController::class)->group(function(){
         
         Route::get('konfigurasi/roles','index')->middleware('can:read role')->name('konfigurasi.roles');
-        Route::get('/roles/create','create')->middleware('can:create role');
+        Route::get('konfigurasi/roles/create','create')->middleware('can:create role');
+        Route::get('konfigurasi/roles/{id}/edit','edit')->middleware('can:create role');
+        Route::post('konfigurasi/roles/{id}/update','update')->middleware('can:create role')->name('roles.update');
         
     });
 });

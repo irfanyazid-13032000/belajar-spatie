@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard &mdash; Arfa</title>
+    <title>belajar spatie</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous" />
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('') }}assets/css/style.min.css">
     <link rel="stylesheet" href="{{ asset('') }}assets/css/bootstrap-override.min.css">
     <link rel="stylesheet" id="theme-color" href="{{ asset('') }}assets/css/dark.min.css">
+    @stack('css')
 </head>
 
 <body>
@@ -46,7 +47,8 @@
     </div>
     <script src="{{ asset('') }}vendor/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="{{ asset('') }}vendor/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
-
+    
+    @stack('js')
     <!-- js for this page only -->
 <script src="{{ asset('') }}vendor/chart.js/dist/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
