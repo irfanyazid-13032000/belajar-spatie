@@ -44,7 +44,7 @@
 @push('js')
 <script src="{{ asset('') }}vendor/jquery/dist/jquery.min.js"></script>
 <script src="{{ asset('') }}vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('') }}vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('') }}vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
 {{ $dataTable->scripts() }}
 
 <script>
@@ -54,6 +54,36 @@
         let id = data.id
         let jenis = data.jenis
 
+        if (jenis === 'delete') {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+             }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        method:'get',
+                        url:`{{url('konfigurasi/roles/${id}')}}`,
+                        success:function (res) {
+                            Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                             )
+                             window.LaravelDataTables['role-table'].ajax.reload()
+
+                           
+                        }
+                    })
+               
+                 }
+             })
+            return
+        }
 
         $.ajax({
             method:'get',
@@ -69,6 +99,7 @@
             $('#formAction').on('submit',function (e) {
                 e.preventDefault()
                 let formData = $(this).serialize();
+
 
 
                 $.ajax({

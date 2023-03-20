@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -23,6 +24,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::get('/jabatan',[JabatanController::class,'index']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -39,6 +43,9 @@ Route::middleware('auth')->group(function(){
         Route::get('konfigurasi/roles/create','create')->middleware('can:create role');
         Route::get('konfigurasi/roles/{id}/edit','edit')->middleware('can:create role');
         Route::post('konfigurasi/roles/{id}/update','update')->middleware('can:create role')->name('roles.update');
+        Route::get('konfigurasi/roles/{id}/','destroy')->middleware('can:create role')->name('roles.delete');
         
     });
 });
+
+
