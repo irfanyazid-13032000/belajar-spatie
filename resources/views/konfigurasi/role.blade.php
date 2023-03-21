@@ -19,7 +19,7 @@
                     </div>
                     <div class="card-body">
                         @if (request()->user()->can('create role'))
-                        <button type="button" class="btn mb-2 btn-primary"><i class="ti-plus"></i></button>
+                        <button type="button" class="btn mb-2 btn-primary btn-add"><i class="ti-plus"></i></button>
                         @endif
                         {{ $dataTable->table() }}
                     </div>
@@ -49,6 +49,51 @@
 
 <script>
     const modal = new bootstrap.Modal($('#modalAction'))
+
+    $('.btn-add').on('click',function (params) {
+        $.ajax({
+            method:'get',
+            url:`{{url('konfigurasi/roles/create')}}`,
+            success:function (res) {
+                $('#modalAction').find('.modal-dialog').html(res)
+                modal.show()
+                simpan()
+            }
+        })
+    })
+
+    function simpan() {
+            $('#formAction').on('submit',function (e) {
+                e.preventDefault()
+                let formData = $(this).serialize();
+                let url = this.getAttribute('action');
+
+
+                $.ajax({
+                    method:'post',
+                    url:url,
+                    data:formData,
+                    success:function (res) {
+                        window.LaravelDataTables['role-table'].ajax.reload()
+                        modal.hide()
+                    },
+                    error:function (res) {
+                        let errors = res.responseJSON?.errors
+                      
+
+                        if(errors){
+                            $('span').text('')
+                            for(const [key,value] of Object.entries(errors)){
+                                $(`[name='${key}']`).parent().append(`<span class="text-danger">${value}</span>`)
+                            }
+                        }
+                    }
+                 })
+                
+            })
+        }
+    
+    
     $('#role-table').on('click','.action',function (params) {
         let data = $(this).data()
         let id = data.id
@@ -99,12 +144,14 @@
             $('#formAction').on('submit',function (e) {
                 e.preventDefault()
                 let formData = $(this).serialize();
+                let url = this.getAttribute('action');
+                
 
 
 
                 $.ajax({
                     method:'post',
-                    url:`{{url('konfigurasi/roles/${id}/update')}}`,
+                    url:url,
                     data:formData,
                     success:function (res) {
                         window.LaravelDataTables['role-table'].ajax.reload()
