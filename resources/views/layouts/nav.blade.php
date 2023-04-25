@@ -23,19 +23,33 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    @can('read konfigurasi')
-                    <li class="{{ request()->segment(1) === 'konfigurasi' ? 'active' : '' }}">
+                   
+
+
+                    @foreach (getMenus() as $menu)
+                  
+
+                    @can('read '.$menu->url)
+
+                    <li class="{{ request()->segment(1) === $menu->url ? 'active' : '' }}">
                         <a href="#" class="main-menu has-dropdown">
-                            <i class="ti-desktop"></i>
-                            <span>Konfigurasi</span>
+                            <i class="{{$menu->icon}}"></i>
+                            <span>{{$menu->name}}</span>
                         </a>
-                        <ul class="sub-menu {{ request()->segment(1) === 'konfigurasi' ? 'expand' : '' }}">
-                          @can('read role')
-                            <li class="{{ request()->segment(2) === 'roles' ? 'active' : '' }}"><a href="{{route('konfigurasi.roles')}}" class="link"><span>Roles</span></a></li>
-                          @endcan
+                        <ul class="sub-menu {{ request()->segment(1) === $menu->url ? 'expand' : '' }}">
+                        @foreach ($menu->sub_menus as $subMenu)
+                        @can('read '.$subMenu->url)
+                        <li class="{{ request()->segment(1) === explode('/',$subMenu->url)[0] && request()->segment(2) === explode('/',$subMenu->url)[1] ? 'active' : '' }}"><a href="{{url($subMenu->url)}}" class="link"><span>{{$subMenu->name}}</span></a></li>
+                        @endcan
+                        @endforeach
                         </ul>
                     </li>
+
                     @endcan
+                        
+                    @endforeach
+
+
                     <li>
                         <a href="#" class="main-menu has-dropdown">
                             <i class="ti-book"></i>

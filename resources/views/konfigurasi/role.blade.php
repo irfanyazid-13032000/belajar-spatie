@@ -3,6 +3,8 @@
  <!-- CSS for this page only -->
 <link href="{{ asset('') }}vendor/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="{{ asset('') }}vendor/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+
     <!-- End CSS  -->
 @endpush
 @section('content')
@@ -46,6 +48,13 @@
 <script src="{{ asset('') }}vendor/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('') }}vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
 {{ $dataTable->scripts() }}
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 
 <script>
     const modal = new bootstrap.Modal($('#modalAction'))
@@ -174,5 +183,7 @@
 
 
     })
+
+    
 </script>
 @endpush

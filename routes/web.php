@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,14 +40,20 @@ require __DIR__.'/auth.php';
 Route::middleware('auth')->group(function(){
     Route::controller(RoleController::class)->group(function(){
         
-        Route::get('konfigurasi/roles','index')->middleware('can:read role')->name('konfigurasi.roles');
-        Route::get('konfigurasi/roles/create','create')->middleware('can:create role');
-        Route::get('konfigurasi/roles/{id}/edit','edit')->middleware('can:create role');
-        Route::post('konfigurasi/roles/{id}/update','update')->middleware('can:create role')->name('roles.update');
-        Route::get('konfigurasi/roles/{id}/','destroy')->middleware('can:create role')->name('roles.delete');
-        Route::get('konfigurasi/roles/create','create')->middleware('can:create role')->name('roles.create');
-        Route::post('konfigurasi/roles/store','store')->middleware('can:create role')->name('roles.store');
+        Route::get('konfigurasi/roles','index')->middleware('can:read konfigurasi/role')->name('konfigurasi.roles');
+        Route::get('konfigurasi/roles/create','create')->middleware('can:create konfigurasi/role');
+        Route::get('konfigurasi/roles/{id}/edit','edit')->middleware('can:create konfigurasi/role');
+        Route::post('konfigurasi/roles/{id}/update','update')->middleware('can:create konfigurasi/role')->name('roles.update');
+        Route::get('konfigurasi/roles/{id}/','destroy')->middleware('can:create konfigurasi/role')->name('roles.delete');
+        Route::get('konfigurasi/roles/create','create')->middleware('can:create konfigurasi/role')->name('roles.create');
+        Route::post('konfigurasi/roles/store','store')->middleware('can:create konfigurasi/role')->name('roles.store');
+
+    });
+    Route::controller(PermissionController::class)->group(function(){
         
+        Route::get('konfigurasi/permission','index');
+       
+
     });
 });
 
