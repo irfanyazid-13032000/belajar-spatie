@@ -7,3 +7,7 @@ saya sangat terbuka apabila ada pihak yang bisa membantu saya dalam menyempurnak
 
 apabila ada pihak yang merasa aplikasi ini masih jauh dari kata sempurna, kalian dapat menghubungi : 089680810704
 
+
+## berikut ini link Youtube video yang aku tonton dalam pembuatan aplikasi ini
+https://www.youtube.com/playlist?list=PLM2utx0CaGTIzR21G0KEjeKmNuJvG3Q6V
+
